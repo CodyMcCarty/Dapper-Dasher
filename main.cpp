@@ -50,15 +50,18 @@ int main()
         }
         nebPos.x += nebVelocity * dt;
         scarfyPos.y += velocity * dt;
-        runningTime += dt;
-        if (runningTime >= updateTime)
+        if (!isInAir)
+            runningTime += dt;
         {
-            runningTime = 0.0;
-            scarfyRec.x = frame * scarfyRec.width;
-            frame++;
-            if (frame > 5)
+            if (runningTime >= updateTime)
             {
-                frame = 0;
+                runningTime = 0.0;
+                scarfyRec.x = frame * scarfyRec.width;
+                frame++;
+                if (frame > 5)
+                {
+                    frame = 0;
+                }
             }
         }
         DrawTextureRec(nebula, nebRec, nebPos, WHITE);
